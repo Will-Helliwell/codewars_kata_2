@@ -2,6 +2,12 @@
 
 ## JS
 
+### Setup
+
+- `cd js && npm install`
+
+### Running Tests
+
 - setup jest sample test according to [tutorial](https://www.valentinog.com/blog/jest/)
 
 Once in the js root folder:
