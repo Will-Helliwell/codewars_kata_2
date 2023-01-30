@@ -1,10 +1,6 @@
 function validBraces(braces) {
   let validBraces = ['()', '[]', '{}'];
-  if (validBraces.includes(braces)) {
-      return true;
-  } else {
-      return false;
-  }
+  return (validBraces.includes(braces)) ? true: false;
 }
 
 module.exports = validBraces;
