@@ -1,26 +1,33 @@
 function validBraces(braces) {
-  let validBraces = ['()', '[]', '{}'];
-  let unmatchedBraceCount = 0;
-
+  let validBracePairs = ["()", "[]", "{}"];
   let bracePairs = [];
   let bracesArray = braces.split("");
 
   // create array of brace pairs until not enough left to make a pair
-  while(bracesArray.length > 1){
+  while (bracesArray.length > 1) {
     let openingBrace = bracesArray.shift();
     let closingBrace = bracesArray.pop();
     let bracePair = openingBrace + closingBrace;
     bracePairs.push(bracePair);
   }
 
-  // check if any brace pair is invalid
-  bracePairs.forEach(bracePair => {
-    if(!validBraces.includes(bracePair)){
-      unmatchedBraceCount ++;
-    }
-  });
+  return anyInvalidBracePairs(bracePairs, validBracePairs);
 
-  return (unmatchedBraceCount > 0)? false : true;
+  /**
+   * Checks if all supplied brace pairs are valid
+   * @param array - an array of all brace pair strings to check
+   * @param array - an array of all valid brace pair strings
+   * @return boolean - true if all are valid, else false
+   */
+  function anyInvalidBracePairs(bracePairs, validBracePairs) {
+    let unmatchedBraceCount = 0;
+    bracePairs.forEach((bracePair) => {
+      if (!validBracePairs.includes(bracePair)) {
+        unmatchedBraceCount++;
+      }
+    });
+    return unmatchedBraceCount > 0 ? false : true;
+  }
 }
 
 module.exports = validBraces;
