@@ -18,4 +18,10 @@ describe('validBraces function', () => {
         expect(validBraces('(())')).toEqual(true);
         expect(validBraces('{[()]}')).toEqual(true);
     });
+
+    test('returns false given a single bracket', () => {
+        expect(validBraces('(')).toEqual(false);
+        expect(validBraces('}')).toEqual(false);
+        expect(validBraces(']')).toEqual(false);
+    });
 });

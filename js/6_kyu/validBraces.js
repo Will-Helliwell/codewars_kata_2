@@ -4,7 +4,7 @@ function validBraces(braces) {
   let bracesArray = braces.split("");
 
   // create array of brace pairs until not enough left to make a pair
-  while (bracesArray.length > 1) {
+  while (bracesArray.length > 0) {
     let openingBrace = bracesArray.shift();
     let closingBrace = bracesArray.pop();
     let bracePair = openingBrace + closingBrace;
@@ -29,5 +29,6 @@ function validBraces(braces) {
     return unmatchedBraceCount > 0 ? false : true;
   }
 }
+
 
 module.exports = validBraces;
