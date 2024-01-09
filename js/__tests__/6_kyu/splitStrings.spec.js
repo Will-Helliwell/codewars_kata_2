@@ -10,4 +10,9 @@ describe('splitStrings function', () => {
          expect(splitStrings('abcd')).toEqual(['ab', 'cd']);
          expect(splitStrings('abcdef')).toEqual(['ab', 'cd', 'ef']);
     });
+
+    test('returns correctly given an odd number of chars', () => {
+         expect(splitStrings('abc')).toEqual(['ab', 'c_']);
+         expect(splitStrings('abcde')).toEqual(['ab', 'cd', 'e_']);
+    });
 });
