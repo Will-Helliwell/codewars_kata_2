@@ -7,6 +7,7 @@ function validPhoneNumber(phoneNumber){
 
     // valdiate first section
     const firstSection = splitOnSpaces[0];
+   
     if(firstSection.length !== 5) return false;
 
     const firstSectionFirstChar = firstSection[0];
@@ -19,8 +20,21 @@ function validPhoneNumber(phoneNumber){
     // validate correctly spaced single whitespace
      if (phoneNumber[5] !== ' ') return false;
 
-    return true;
+    // validate second section
+    const secondSection = splitOnSpaces[1];
 
+    if(secondSection.length !== 8) return false;
+    
+    if(secondSection[3] !== '-') return false;
+
+    const secondSectionSplitByHyphen = secondSection.split("-");
+    const secondSectionFirstNumber = secondSectionSplitByHyphen[0];
+    if(secondSectionFirstNumber.length !== 3 || !isNumeric(secondSectionFirstNumber)) return false;
+
+    const secondSectionSecondNumber = secondSectionSplitByHyphen[1];
+    if(secondSectionSecondNumber.length !== 4 || !isNumeric(secondSectionSecondNumber)) return false;
+
+    return true;
 
     function isNumeric(value) {
         return /^\d+$/.test(value);
