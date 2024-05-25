@@ -15,8 +15,9 @@ function validPhoneNumber(phoneNumber) {
   if (!isSecondSectionValid(secondSection)) return false;
 
   return true;
+}
 
-  function isFirstSectionValid(firstSection) {
+function isFirstSectionValid(firstSection) {
     // length
     if (firstSection.length !== 5) return false;
 
@@ -55,6 +56,5 @@ function validPhoneNumber(phoneNumber) {
   function isNumeric(value) {
     return /^\d+$/.test(value);
   }
-}
 
 module.exports = validPhoneNumber;
