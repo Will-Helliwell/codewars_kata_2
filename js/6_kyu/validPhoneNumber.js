@@ -5,18 +5,36 @@ function validPhoneNumber(phoneNumber) {
 
   const splitOnSpaces = phoneNumber.split(" ");
 
-  // valdiate first section
   const firstSection = splitOnSpaces[0];
-
   if (!isFirstSectionValid(firstSection)) return false;
 
   // validate correctly spaced single whitespace
   if (phoneNumber[5] !== " ") return false;
 
-  // validate second section
   const secondSection = splitOnSpaces[1];
+  if (!isSecondSectionValid(secondSection)) return false;
 
-  if (secondSection.length !== 8) return false;
+  return true;
+
+  function isFirstSectionValid(firstSection) {
+    // length
+    if (firstSection.length !== 5) return false;
+
+    // bracket position
+    const firstSectionFirstChar = firstSection[0];
+    const firstSectionLastChar = firstSection[firstSection.length - 1];
+    if (firstSectionFirstChar !== "(" || firstSectionLastChar !== ")")
+      return false;
+
+    // middle number
+    const firstSectionMiddleThreeChar = firstSection.slice(1, 4);
+    if (firstSectionMiddleThreeChar.length !== 3 || !isNumeric(firstSectionMiddleThreeChar)) return false;
+
+    return true;
+  }
+
+  function isSecondSectionValid(secondSection) {
+    if (secondSection.length !== 8) return false;
 
   if (secondSection[3] !== "-") return false;
 
@@ -34,22 +52,6 @@ function validPhoneNumber(phoneNumber) {
     !isNumeric(secondSectionSecondNumber)
   )
     return false;
-
-  return true;
-
-  function isFirstSectionValid(firstSection) {
-    // length
-    if (firstSection.length !== 5) return false;
-
-    // bracket position
-    const firstSectionFirstChar = firstSection[0];
-    const firstSectionLastChar = firstSection[firstSection.length - 1];
-    if (firstSectionFirstChar !== "(" || firstSectionLastChar !== ")")
-      return false;
-
-    // middle number
-    const firstSectionMiddleThreeChar = firstSection.slice(1, 4);
-    if (firstSectionMiddleThreeChar.length !== 3 || !isNumeric(firstSectionMiddleThreeChar)) return false;
 
     return true;
   }
