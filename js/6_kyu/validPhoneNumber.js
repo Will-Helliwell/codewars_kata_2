@@ -7,20 +7,14 @@ function validPhoneNumber(phoneNumber){
 
     // valdiate first section
     const firstSection = splitOnSpaces[0];
-    if(firstSection.length !== 5){
-        return false;
-    }
+    if(firstSection.length !== 5) return false;
 
     const firstSectionFirstChar = firstSection[0];
     const firstSectionLastChar = firstSection[firstSection.length - 1];
-    if(firstSectionFirstChar !== '(' || firstSectionLastChar !== ')') {
-        return false;
-    } 
+    if(firstSectionFirstChar !== '(' || firstSectionLastChar !== ')')  return false;
 
     const firstSectionMiddleThreeChar = firstSection.slice(1,4);
-    if (!isNumeric(firstSectionMiddleThreeChar)) {
-        return false;
-    }
+    if (!isNumeric(firstSectionMiddleThreeChar)) return false;
 
     // validate correctly spaced single whitespace
      if (phoneNumber[5] !== ' ') return false;
