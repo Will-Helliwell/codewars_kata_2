@@ -28,34 +28,30 @@ function validPhoneNumber(phoneNumber) {
 
     // middle number
     const firstSectionMiddleThreeChar = firstSection.slice(1, 4);
-    if (firstSectionMiddleThreeChar.length !== 3 || !isNumeric(firstSectionMiddleThreeChar)) return false;
+    if(!isValidNumber(firstSectionMiddleThreeChar, 3)) return false;
 
     return true;
   }
 
   function isSecondSectionValid(secondSection) {
     if (secondSection.length !== 8) return false;
+    if (secondSection[3] !== "-") return false;
 
-  if (secondSection[3] !== "-") return false;
+    const secondSectionSplitByHyphen = secondSection.split("-");
+    const secondSectionFirstNumber = secondSectionSplitByHyphen[0];
+    if(!isValidNumber(secondSectionFirstNumber, 3)) return false;
 
-  const secondSectionSplitByHyphen = secondSection.split("-");
-  const secondSectionFirstNumber = secondSectionSplitByHyphen[0];
-  if (
-    secondSectionFirstNumber.length !== 3 ||
-    !isNumeric(secondSectionFirstNumber)
-  )
-    return false;
-
-  const secondSectionSecondNumber = secondSectionSplitByHyphen[1];
-  if (
-    secondSectionSecondNumber.length !== 4 ||
-    !isNumeric(secondSectionSecondNumber)
-  )
-    return false;
+    const secondSectionSecondNumber = secondSectionSplitByHyphen[1];
+    if (!isValidNumber(secondSectionSecondNumber, 4)) return false;
 
     return true;
   }
 
+  function isValidNumber(number, numberLength) {
+    if (number.length !== numberLength || !isNumeric(number)) return false;
+
+    return true;
+  }
   function isNumeric(value) {
     return /^\d+$/.test(value);
   }
